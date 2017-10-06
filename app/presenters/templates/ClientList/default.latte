@@ -3,6 +3,15 @@
 
     <h2>Klienti</h2>
 
+    {foreach $items as $client}
+        <div class="client_list">
+            <h4>{$client->name}</h4>
+            <div class="additional_info">{$client->address_street}, {$client->address_town}, {$client->address_zip}, IČ {$client->legal_id}
+
+                </div>
+        </div>
+    {/foreach}
+
     <a n:href="EditClient:default">Upravit</a> nebo
     <a n:href="Invoice:default">Zpět na fakturu</a>
 

@@ -1,9 +1,13 @@
 {block content}
 
+    <a n:href="Invoice:default">Zpět na fakturu</a>
 
-    <h2>Upravit údaje o klientovi</h2>
 
-    <a n:href="ClientList:default">Uložit</a>
+    <h2>Upravit údaje o klientovi {$client->name}</h2>
+
+
+    {control editClientForm} <!--jak to s com souvisi?-->
+
 
 
 {/block}

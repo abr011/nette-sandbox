@@ -6,6 +6,10 @@ h1 {
 	color: #3484D2;
 }
 
+h4 {
+	color: #ff33D2;
+}
+
 a[href^="#error:"] {
 	background: red;
 	color: white;

@@ -1,10 +1,21 @@
 {block content}
 
 
+    <a n:href="Invoice:default">Zpět na fakturu</a>
+
     <h2>Vydané faktury</h2>
 
-    <a n:href="EditInvoice:default">Upravit</a> nebo
-    <a n:href="Invoice:default">Zpět na fakturu</a>
+    {foreach $invoices as $invoice}
+        <div class="client_list">
+            <h4>{$invoice->number_order} {$invoice->number_year} {$invoice->ref("client")->name}, {$invoice->amount} Kč</h4>
+            <a n:href="EditInvoice:default $invoice->id">Upravit</a>
+
+        </div>
+    {/foreach}
+
 
 
 {/block}
+
+
+

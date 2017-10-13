@@ -1,4 +1,5 @@
 {block content}
+    <a n:href="Invoice:default">Zpět na fakturu</a>
 
 
     <h2>Klienti</h2>
@@ -9,11 +10,10 @@
             <div class="additional_info">{$client->address_street}, {$client->address_town}, {$client->address_zip}, IČ {$client->legal_id}
 
                 </div>
+            <a n:href="EditClient:default $client->id">Upravit</a>
         </div>
     {/foreach}
 
-    <a n:href="EditClient:default">Upravit</a> nebo
-    <a n:href="Invoice:default">Zpět na fakturu</a>
 
 
 {/block}

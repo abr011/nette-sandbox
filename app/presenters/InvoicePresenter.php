@@ -38,8 +38,9 @@ class InvoicePresenter extends BasePresenter
 
 	}
 
-    protected function createComponentInvoiceForm()
+    protected function createComponentInvoiceForm($newClientId = 0)
     {
+
         $form = new Form; // means Nette\Application\UI\Form
 
         $form->addText('number_order', 'Číslo faktury ')->setRequired();
@@ -48,7 +49,7 @@ class InvoicePresenter extends BasePresenter
         $form->addText('mature_date', 'Datum splatnosti ')->setRequired();
 
         $clients = $this->database->table('client')->fetchPairs('id', 'name');
-        $form->addSelect('name', 'Klient', $clients);
+        $form->addSelect('client_id', 'Klient', $clients);
 
         $form->addText('amount', 'Částka')->setRequired();
         $form->addText('for_what', 'Popis činnosti (nepovinné)')->setRequired();
@@ -64,6 +65,15 @@ class InvoicePresenter extends BasePresenter
         $form->setDefaults(["number_year" => $this->invoice->number_year]);
         $form->setDefaults(["issue_date" => $this->invoice->issue_date]);  //->format('j. n. Y')
         $form->setDefaults(["mature_date" => $this->invoice->mature_date]);
+
+
+
+        echo $newClientId;
+
+        $form->setDefaults(["client_id" => $this->invoice->client_id]);
+
+
+
         $form->setDefaults(["amount" => $this->invoice->amount]);
         $form->setDefaults(["for_what" => $this->invoice->for_what]);
         $form->setDefaults(["thanks" => $this->invoice->thanks]);
@@ -77,11 +87,13 @@ class InvoicePresenter extends BasePresenter
 
     public function InvoiceSucceeded($form, $values)
     {
-        $this->database->table('invoice')->wherePrimary($this->invoice->id)->insert([
+        $this->database->table('invoice')->insert([
             "number_order" => $values->number_order,
             "number_year" => $values->number_year,
             "issue_date" => $values->issue_date,
             "mature_date" => $values->mature_date,
+            "client_id" => $values->client_id,
+
             "amount" => $values->amount,
             "for_what" => $values->for_what,
             "thanks" => $values->thanks

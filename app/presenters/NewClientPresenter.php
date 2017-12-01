@@ -71,6 +71,6 @@ class NewClientPresenter extends BasePresenter
             "address_zip" => $values->address_zip]);
         $this->flashMessage("Uloženo");
 
-        $this->redirect("Invoice:default", array("newClientId" => $newClient->id)); // neumel jsem to napsat jednoduse
+        $this->redirect("Invoice:default",  $newClient->id); // neumel jsem to napsat jednoduse
     }
 }
